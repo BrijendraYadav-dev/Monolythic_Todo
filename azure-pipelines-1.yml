@@ -40,7 +40,7 @@ stages:
         inputs:
           provider: 'azurerm'
           command: 'plan'
-          workingDirectory: '$(System.DefaultWorkingDirectory)\macagent\_work\1\s\Environments\dev'
+          workingDirectory: 'C:\Users\Brijendra\macagent\_work\1\s\Environments\dev'
           environmentServiceNameAzureRM: 'TodoApp_Service'
           backendServiceArm: 'TodoApp_Service'
           backendAzureRmResourceGroupName: 'Brijendra_RG'
