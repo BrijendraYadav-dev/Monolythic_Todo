@@ -20,7 +20,7 @@ stages:
         inputs:
           provider: 'azurerm'
           command: 'init'
-          workingDirectory: 'C:\Users\Brijendra\macagent\_work\1\s\Environments\dev'
+          workingDirectory: '$(System.DefaultWorkingDirectory)\Environments\dev'
           backendServiceArm: 'TodoApp_Service'
           backendAzureRmResourceGroupName: 'Brijendra_RG'
           backendAzureRmStorageAccountName: 'brijendrastoragelab'
@@ -41,12 +41,17 @@ stages:
         inputs:
           provider: 'azurerm'
           command: 'plan'
-          workingDirectory: 'C:\Users\Brijendra\macagent\_work\1\s\Environments\dev'
+          workingDirectory: '$(System.DefaultWorkingDirectory)\Environments\dev'
           environmentServiceNameAzureRM: 'TodoApp_Service'
           backendServiceArm: 'TodoApp_Service'
           backendAzureRmResourceGroupName: 'Brijendra_RG'
           backendAzureRmStorageAccountName: 'brijendrastoragelab'
           backendAzureRmContainerName: 'brijendracontainerlab'
           backendAzureRmKey: 'terraform.tfstate'
+
+
+
+
+
 
 
