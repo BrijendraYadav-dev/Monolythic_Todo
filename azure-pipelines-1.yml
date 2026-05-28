@@ -4,39 +4,45 @@ trigger:
 pool: Todo_Microservice_Pool
 
 
-steps:
-- task: TerraformInstaller@1
-  inputs:
-    terraformVersion: 'latest'
+stages: 
+- stage: Init
+  displayName: Build
+  jobs: 
+    - job: Initilization
+      steps:
+      - task: TerraformInstaller@1
+        displayName: Terraform Install
+        inputs:
+          terraformVersion: 'latest'
+    
+      - task: TerraformTask@5
+        displayName: Terraform Init
+        inputs:
+          provider: 'azurerm'
+          command: 'init'
+          backendServiceArm: 'TodoApp_Service'
+          backendAzureRmResourceGroupName: 'Brijendra_RG'
+          backendAzureRmStorageAccountName: 'brijendrastoragelab'
+          backendAzureRmContainerName: 'brijendracontainerlab'
+          backendAzureRmKey: 'terraform.tfstate'
 
-
-
-
-- task: TerraformTask@5
-  inputs:
-    provider: 'azurerm'
-    command: 'init'
-    backendServiceArm: 'TodoApp_Service'
-    backendAzureRmResourceGroupName: 'Brijendra_RG'
-    backendAzureRmStorageAccountName: 'brijendrastoragelab'
-    backendAzureRmContainerName: 'brijendracontainerlab'
-    backendAzureRmKey: 'terraform.tfstate'
-
-
-- task: TerraformTask@5
-  inputs:
-    provider: 'azurerm'
-    command: 'validate'
-
-- task: TerraformTask@5
-  inputs:
-    provider: 'azurerm'
-    command: 'plan'
-    environmentServiceNameAzureRM: 'TodoApp_Service'
-    backendServiceArm: 'TodoApp_Service'
-    backendAzureRmResourceGroupName: 'Brijendra_RG'
-    backendAzureRmStorageAccountName: 'brijendrastoragelab'
-    backendAzureRmContainerName: 'brijendracontainerlab'
-    backendAzureRmKey: 'terraform.tfstate'
-
-
+      - task: TerraformTask@5
+        displayName: Terraform Validate
+        inputs:
+          provider: 'azurerm'
+          command: 'validate'
+    
+    - job: Plan
+      dependsOn: Initilization
+      displayName: Planning
+      steps:
+      - task: TerraformTask@5
+        inputs:
+          provider: 'azurerm'
+          command: 'plan'
+          environmentServiceNameAzureRM: 'TodoApp_Service'
+          backendServiceArm: 'TodoApp_Service'
+          backendAzureRmResourceGroupName: 'Brijendra_RG'
+          backendAzureRmStorageAccountName: 'brijendrastoragelab'
+          backendAzureRmContainerName: 'brijendracontainerlab'
+          backendAzureRmKey: 'terraform.tfstate'
