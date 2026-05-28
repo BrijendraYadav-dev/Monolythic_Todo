@@ -9,14 +9,14 @@ terraform {
 
   }
   backend "azurerm" {
-  resource_group_name  = "dev-aks-rg"
-  storage_account_name = "infrastorage4480143"
-  container_name       = "infracontainer"
+  resource_group_name  = "Brijendra_RG"
+  storage_account_name = "brijendrastoragelab"
+  container_name       = "brijendracontainerlab"
   key                  = "brijendratfstate"
 }
 
 }
 provider "azurerm" {
   features {}
-  subscription_id = "635e9286-14d1-435f-b7e1-af1ebf689f4e"
+  subscription_id = "fe4b406c-7c69-45b7-8c18-908662c0d423"
 }
