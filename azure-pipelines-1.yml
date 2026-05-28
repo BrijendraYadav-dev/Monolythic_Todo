@@ -20,6 +20,7 @@ stages:
         inputs:
           provider: 'azurerm'
           command: 'init'
+          workingDirectory: 'C:\Users\Brijendra\macagent\_work\1\s\Environments\dev'
           backendServiceArm: 'TodoApp_Service'
           backendAzureRmResourceGroupName: 'Brijendra_RG'
           backendAzureRmStorageAccountName: 'brijendrastoragelab'
