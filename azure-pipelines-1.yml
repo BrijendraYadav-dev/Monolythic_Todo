@@ -20,7 +20,7 @@ stages:
         inputs:
           provider: 'azurerm'
           command: 'init'
-          workingDirectory: '\Environmets\dev'
+          workingDirectory: 'C:\Users\Brijendra\agent\_work\1\s\Environmets\dev'
           backendServiceArm: 'TodoApp_Service'
           backendAzureRmResourceGroupName: 'Brijendra_RG'
           backendAzureRmStorageAccountName: 'brijendrastoragelab'
@@ -42,7 +42,7 @@ stages:
         inputs:
           provider: 'azurerm'
           command: 'init'
-          workingDirectory: '\Environmets\dev'
+          workingDirectory: 'C:\Users\Brijendra\agent\_work\1\s\Environmets\dev'
           backendServiceArm: 'TodoApp_Service'
           backendAzureRmResourceGroupName: 'Brijendra_RG'
           backendAzureRmStorageAccountName: 'brijendrastoragelab'
@@ -52,7 +52,7 @@ stages:
         inputs:
           provider: 'azurerm'
           command: 'plan'
-          workingDirectory: '\Environmets\dev'
+          workingDirectory: 'C:\Users\Brijendra\agent\_work\1\s\Environmets\dev'
           environmentServiceNameAzureRM: 'TodoApp_Service'
           backendServiceArm: 'TodoApp_Service'
           backendAzureRmResourceGroupName: 'Brijendra_RG'
