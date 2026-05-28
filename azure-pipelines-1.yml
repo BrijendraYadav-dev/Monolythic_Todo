@@ -32,9 +32,46 @@ stages:
         inputs:
           provider: 'azurerm'
           command: 'validate'
-    
-    - job: Plan
+
+
+    - job: tfsec
       dependsOn: Initilization
+      displayName: TfSec Scan
+      steps:
+      - task: tfsec@1
+        inputs:
+          version: 'v1.26.0'
+          workingDirectory: 'C:\Users\Brijendra\agent\_work\1\s\Environmets\dev'
+
+    - job: tflint
+      dependsOn: tfsec
+      displayName: TFLint
+      steps:
+      - task: PowerShell@2
+        continueOnError: true
+        inputs:
+          targetType: 'inline'
+          script: |
+            winget install TerraformLinters.tflint     
+            ls   
+            tflint
+          errorActionPreference: 'continue'        
+          workingDirectory: 'C:\Users\Brijendra\agent\_work\1\s\Environmets\dev'
+
+- stage: costStage
+  dependsOn: Init
+  displayName: Cost & Impact Assessment Stage
+  jobs: 
+    - job: InfraCost
+      displayName: InfraCost
+      steps:
+      - task: PowerShell@2
+        inputs:
+          targetType: 'inline'
+          script: 'infracost breakdown --path=.'
+          workingDirectory: 'C:\Users\Brijendra\agent\_work\1\s\Environmets\dev'
+      
+    - job: Plan
       displayName: Planning
       steps:
       - task: TerraformTask@5
