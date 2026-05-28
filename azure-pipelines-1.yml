@@ -1,5 +1,5 @@
 trigger: 
-- feature-101
+- main
 
 pool: Todo_Microservice_Pool
 
