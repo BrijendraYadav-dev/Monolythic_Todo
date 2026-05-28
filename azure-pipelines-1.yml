@@ -1,0 +1,42 @@
+trigger: 
+- feature-101
+
+pool: Todo_Microservice_Pool
+
+
+steps:
+- task: TerraformInstaller@1
+  inputs:
+    terraformVersion: 'latest'
+
+
+
+
+- task: TerraformTask@5
+  inputs:
+    provider: 'azurerm'
+    command: 'init'
+    backendServiceArm: 'TodoApp_Service'
+    backendAzureRmResourceGroupName: 'Brijendra_RG'
+    backendAzureRmStorageAccountName: 'brijendrastoragelab'
+    backendAzureRmContainerName: 'brijendracontainerlab'
+    backendAzureRmKey: 'terraform.tfstate'
+
+
+- task: TerraformTask@5
+  inputs:
+    provider: 'azurerm'
+    command: 'validate'
+
+- task: TerraformTask@5
+  inputs:
+    provider: 'azurerm'
+    command: 'plan'
+    environmentServiceNameAzureRM: 'TodoApp_Service'
+    backendServiceArm: 'TodoApp_Service'
+    backendAzureRmResourceGroupName: 'Brijendra_RG'
+    backendAzureRmStorageAccountName: 'brijendrastoragelab'
+    backendAzureRmContainerName: 'brijendracontainerlab'
+    backendAzureRmKey: 'terraform.tfstate'
+
+
