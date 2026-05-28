@@ -38,6 +38,17 @@ stages:
       displayName: Planning
       steps:
       - task: TerraformTask@5
+        displayName: Terraform Init
+        inputs:
+          provider: 'azurerm'
+          command: 'init'
+          workingDirectory: 'C:\Users\Brijendra\agent\_work\1\s\Environmets\dev'
+          backendServiceArm: 'TodoApp_Service'
+          backendAzureRmResourceGroupName: 'Brijendra_RG'
+          backendAzureRmStorageAccountName: 'brijendrastoragelab'
+          backendAzureRmContainerName: 'brijendracontainerlab'
+          backendAzureRmKey: 'terraform.tfstate'
+      - task: TerraformTask@5
         inputs:
           provider: 'azurerm'
           command: 'plan'
