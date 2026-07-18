@@ -15,10 +15,10 @@ steps:
     command: 'init'
     workingDirectory: '$(System.DefaultWorkingDirectory)/Environments/dev'
     backendServiceArm: 'Todo_Infra_Connection'
-    backendAzureRmOverrideSubscriptionID: '1dd58551-b1ab-46ef-9957-b05198450f53'
-    backendAzureRmResourceGroupName: 'dev-rg-01'
-    backendAzureRmStorageAccountName: 'rgstoragetododev'
-    backendAzureRmContainerName: 'rgstoragecontainer'
+    backendAzureRmOverrideSubscriptionID: 'ba58d5e6-0957-437c-9efe-dc7469a93475'
+    backendAzureRmResourceGroupName: 'Todoapp-RG'
+    backendAzureRmStorageAccountName: 'brijendrastoragel'
+    backendAzureRmContainerName: 'starbuckscontainer'
     backendAzureRmKey: 'Terraform.tfstate'
 
 - task: TerraformTask@5
